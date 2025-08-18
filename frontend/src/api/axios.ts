@@ -4,6 +4,11 @@ const apiUrl = "https://content-approval-workflow.onrender.com/";
 
 const axiosInstance = axios.create({
   baseURL: apiUrl,
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  }
 });
 
 axiosInstance.interceptors.request.use((config) => {
