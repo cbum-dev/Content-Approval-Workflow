@@ -9,7 +9,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "nodenext",
     "target": "esnext",
-    "types": ["node"],
+    "types": ["node", "@vercel/node"],
     "allowImportingTsExtensions": true,
     "noEmit": true,
 

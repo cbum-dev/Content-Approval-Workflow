@@ -8,13 +8,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon main.ts",
     "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "ts-node main.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^6.14.0",
+    "@vercel/node": "^5.3.13",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",

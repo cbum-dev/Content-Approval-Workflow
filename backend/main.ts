@@ -1,9 +1,10 @@
 import app from "./src/app.ts";
 import dotenv from "dotenv";
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+
+
 dotenv.config();
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+export default function handler(req: VercelRequest, res: VercelResponse) {
+  return app(req, res);
+}
