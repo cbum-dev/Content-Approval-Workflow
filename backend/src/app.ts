@@ -14,14 +14,11 @@ const allowedOrigins = [
     "https://content-approval-workflow-tf9g.vercel.app"
 ];
 
-// Enhanced CORS configuration
 app.use(cors({
-    origin: allowedOrigins,
-    credentials: true,
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'x-requested-with'],
-    optionsSuccessStatus: 200
-}));
+    allowedHeaders: ['*']
+  }));
 
 // Add middleware for parsing JSON
 app.use(express.json());
