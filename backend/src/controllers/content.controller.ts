@@ -49,6 +49,10 @@ export const approveContent = async (req: Request, res: Response) => {
   try {
     const contentId = req.params.id;
 
+    if (!contentId) {
+      return res.status(400).json({ message: "Content ID is required" });
+    }
+
     const updated = await prisma.content.update({
       where: { id: contentId },
       data: { status: "approved" },
@@ -63,6 +67,11 @@ export const approveContent = async (req: Request, res: Response) => {
 export const rejectContent = async (req: Request, res: Response) => {
   try {
     const contentId = req.params.id;
+
+
+    if (!contentId) {
+      return res.status(400).json({ message: "Content ID is required" });
+    }
 
     const updated = await prisma.content.update({
       where: { id: contentId },
