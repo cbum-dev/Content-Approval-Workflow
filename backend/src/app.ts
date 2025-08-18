@@ -9,8 +9,13 @@ import contentRoutes from './routes/content.routes.ts';
 dotenv.config();
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+const allowedOrigins = [
+    "http://localhost:5173",                         
+    "https://content-approval-workflow-ujd7.vercel.app"
+];
+app.use(cors({
+    origin: allowedOrigins,
+  }));
 
 app.get('/', (req, res) => {
     res.send('Hello World');
