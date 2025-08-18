@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/useAuth";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const { login } = useAuth();
@@ -48,12 +48,12 @@ const Login = () => {
           Login
         </button>
         {error && <div className="text-red-500 mt-2">{error}</div>}
-        <p className="flex gap-2 my-2">
+        <h4 className="flex gap-2 my-2">
           <p>Don't have account? </p>
           <Link to="/signup" className="text-blue-500 hover:text-blue-700">
             Signup
           </Link>
-        </p>
+        </h4>
       </form>
     </div>
   );

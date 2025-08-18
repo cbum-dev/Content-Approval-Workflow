@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { type ReactNode } from "react";
 import { AuthProvider } from "./context/AuthContext";
-import { useAuth } from "./context/useAuth";
+import { useAuth } from "./context/AuthContext";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import UserDashboard from "./pages/UserDashboard";
@@ -9,6 +9,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import SubmitContent from "./pages/SubmitContent";
 import Approvals from "./pages/Approvals";
 import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
 
 // PrivateRoute
 function PrivateRoute({ children, requireAdmin = false }: { children:ReactNode, requireAdmin?: boolean }) {
@@ -24,6 +25,7 @@ function App() {
       <BrowserRouter>
       <Navbar />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={

@@ -40,12 +40,12 @@ const Signup = () => {
         />
         <button className="bg-blue-500 text-white p-2 rounded w-full hover:bg-blue-600">Signup</button>
         {error && <div className="text-red-500 mt-2">{error}</div>}
-        <p className="flex gap-2 my-2">
+        <h4 className="flex gap-2 my-2">
           <p>Already have account? </p>
           <Link to="/login" className="text-blue-500 hover:text-blue-700">
             Login
           </Link>
-        </p>
+        </h4>
       </form>
     </div>
   );
