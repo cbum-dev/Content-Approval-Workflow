@@ -7,9 +7,9 @@ import {
   getContentStats,
   searchContent,
   getRecentActivity,
-} from "../controllers/content.controller.ts";
-import { authenticateJWT } from "../middleware/auth.ts";
-import { requireRole } from "../middleware/role.ts";
+} from "../controllers/content.controller";
+import { authenticateJWT } from "../middleware/auth";
+import { requireRole } from "../middleware/role";
 
 const router = Router();
 

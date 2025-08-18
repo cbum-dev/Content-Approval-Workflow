@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const content_controller_1 = require("../controllers/content.controller");
+const auth_1 = require("../middleware/auth");
+const role_1 = require("../middleware/role");
+const router = (0, express_1.Router)();
+router.use(auth_1.authenticateJWT);
+router.post("/", content_controller_1.createContent);
+router.get("/", content_controller_1.getContent);
+router.get("/stats", (0, role_1.requireRole)("admin"), content_controller_1.getContentStats);
+router.get("/search", auth_1.authenticateJWT, content_controller_1.searchContent);
+router.get("/recent", (0, role_1.requireRole)("admin"), content_controller_1.getRecentActivity);
+router.put("/:id/approve", (0, role_1.requireRole)("admin"), content_controller_1.approveContent);
+router.put("/:id/reject", (0, role_1.requireRole)("admin"), content_controller_1.rejectContent);
+exports.default = router;
