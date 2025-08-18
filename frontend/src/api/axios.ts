@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = "http://localhost:3000"; 
+const apiUrl = "https://content-approval-workflow.onrender.com/"; 
 
 const axiosInstance = axios.create({
   baseURL: apiUrl,
