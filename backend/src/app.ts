@@ -10,7 +10,10 @@ import contentRoutes from './routes/content.routes';
 dotenv.config();
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://content-approval-workflow-tf9g.vercel.app',
+  credentials: true
+}));
 app.use(express.json());
 
 app.get('/', (req, res) => {
