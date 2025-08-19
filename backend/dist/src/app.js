@@ -11,7 +11,10 @@ const auth_routes_1 = __importDefault(require("./routes/auth.routes"));
 const content_routes_1 = __importDefault(require("./routes/content.routes"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+app.use(cors_1.default({
+    origin: 'https://content-approval-workflow-tf9g.vercel.app',
+    credentials: true
+}));
 app.use(express_1.default.json());
 app.get('/', (req, res) => {
     res.send('Hello World');
