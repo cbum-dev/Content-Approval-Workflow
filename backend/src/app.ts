@@ -9,16 +9,13 @@ import contentRoutes from './routes/content.routes';
 dotenv.config();
 const app = express();
 
-const allowedOrigins = [
-    "http://localhost:5173",
-    "https://content-approval-workflow-tf9g.vercel.app"
-];
+const corsOptions = {
+  origin: 'https://content-approval-workflow-tf9g.vercel.app',
+  credentials: true,
+};
 
-app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['*']
-  }));
+app.use(cors(corsOptions));
+// Enable CORS for all origins
 
 // Add middleware for parsing JSON
 app.use(express.json());
