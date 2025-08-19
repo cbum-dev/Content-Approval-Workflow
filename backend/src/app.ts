@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import prisma from './prisma/client';
+import "./types/express"
 
 import authRoutes from './routes/auth.routes';
 import contentRoutes from './routes/content.routes';
@@ -9,27 +10,20 @@ import contentRoutes from './routes/content.routes';
 dotenv.config();
 const app = express();
 
-const corsOptions = {
-  origin: 'https://content-approval-workflow-tf9g.vercel.app',
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
-// Enable CORS for all origins
-
-// Add middleware for parsing JSON
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.send('Hello World');
-});
+})
 
 prisma.$connect().then(() => {
     console.log('Connected to MongoDB');
 }).catch((err) => {
     console.error('Error connecting to MongoDB', err);
 });
+
+
 
 app.use('/auth', authRoutes);
 app.use('/content', contentRoutes);

@@ -13,7 +13,6 @@ model User {
   passwordHash String
   role         String
   contents     Content[]
-  createdAt DateTime @default(now())
 }
 
 model Content {
