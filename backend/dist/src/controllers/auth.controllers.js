@@ -33,19 +33,31 @@ exports.signup = signup;
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
+        console.log('Login attempt:', { email, password });
+        if (!email || !password) {
+            return res.status(400).json({ message: "Email and password are required" });
+        }
         const user = await client_1.default.user.findUnique({ where: { email } });
         if (!user) {
-            return res.status(401).json({ message: "Invalid credentials" });
+            console.log('No user found for email:', email);
+            return res.status(401).json({ message: "Invalid credentials: user not found" });
         }
         const valid = await bcryptjs_1.default.compare(password, user.passwordHash);
         if (!valid) {
-            return res.status(401).json({ message: "Invalid credentials" });
+            console.log('Password mismatch for user:', email);
+            return res.status(401).json({ message: "Invalid credentials: password incorrect" });
         }
         const token = jsonwebtoken_1.default.sign({ userId: user.id, email: user.email, role: user.role }, JWT_SECRET, { expiresIn: "12h" });
         res.json({ token, user: { id: user.id, email: user.email, role: user.role } });
     }
     catch (error) {
-        res.status(500).json({ error: "Login failed" });
+        console.error('Login error:', error);
+        if (error instanceof Error) {
+            res.status(500).json({ error: `Login failed!!!: ${error.message}` });
+        }
+        else {
+            res.status(500).json({ error: "Login failed!!!: Unknown error" });
+        }
     }
 };
 exports.login = login;
